@@ -1,11 +1,11 @@
-import DefaultTemplate from './template';
+import DefaultTemplate from './template/index';
 import { EmojiMap, EmojiPickerOptions, EmojiSourceFn, OnEmojiSelectHandler } from './types';
 import { OnEmojiSelectListener } from './helpers/emitter';
 
 import '../less/styles.less';
 
 
-export default class EmojiPicker<T extends EmojiMap> {
+export class EmojiPicker<T extends EmojiMap> {
     container: HTMLElement;
     emojiBlock?: HTMLElement | null;
     getEmojiList: EmojiSourceFn<T>;

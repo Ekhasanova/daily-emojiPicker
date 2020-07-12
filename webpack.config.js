@@ -1,6 +1,5 @@
 'use strict';
 
-const webpack = require('webpack');
 const path = require('path');
 const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 
