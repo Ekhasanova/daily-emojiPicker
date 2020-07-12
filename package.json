@@ -1,0 +1,25 @@
+{
+  "name": "@e.khasanova/daily-emoji-picker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ekhasanova/daily-emojiPicker.git"
+  },
+  "keywords": [
+    "emoji"
+  ],
+  "author": "e.khasanova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ekhasanova/daily-emojiPicker/issues"
+  },
+  "homepage": "https://github.com/Ekhasanova/daily-emojiPicker#readme",
+  "dependencies": {
+    "vanilla-lazyload": "4.0.4"
+  }
+}
