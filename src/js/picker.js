@@ -1,6 +1,8 @@
 import EventEmitter from './helpers/emitter';
 import DefaultTemplate from './template/index';
 
+import '../less/styles.less';
+
 
 export default class EmojiPicker {
 

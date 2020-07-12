@@ -1,4 +1,3 @@
-
 export interface EmojiItem {
     name: string;
     relative_path: string;
@@ -17,7 +16,7 @@ export interface EmojiData {
 export interface EmojiPickerOptions<T extends EmojiMap> {
     source: EmojiSourceFn<T>;
     onSelect: OnEmojiSelectHandler;
-    defaultActiveGroup: string;
+    defaultActiveGroup?: string;
 }
 
 export type OnEmojiSelectHandler  = (data: EmojiData) => void;

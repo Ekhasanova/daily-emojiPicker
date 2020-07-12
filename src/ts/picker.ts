@@ -1,20 +1,25 @@
-import DefaultTemplate from './template/index';
+import DefaultTemplate from './template';
 import { EmojiMap, EmojiPickerOptions, EmojiSourceFn, OnEmojiSelectHandler } from './types';
 import { OnEmojiSelectListener } from './helpers/emitter';
+
+import '../less/styles.less';
 
 
 export default class EmojiPicker<T extends EmojiMap> {
     container: HTMLElement;
-    emojiBlock: HTMLElement;
-    getEmojiList: EmojiSourceFn<T>
+    emojiBlock?: HTMLElement | null;
+    getEmojiList: EmojiSourceFn<T>;
     defaultActiveGroup: string;
     onEmojiSelected: OnEmojiSelectHandler;
 
-    constructor(el: HTMLElement) {
+    constructor(el: HTMLElement, options: EmojiPickerOptions<T>) {
         this.container = el;
+        this.getEmojiList = options.source;
+        this.onEmojiSelected = options.onSelect;
+        this.defaultActiveGroup = options.defaultActiveGroup || 'smiles';
     }
 
-    get activeGroup(): HTMLElement {
+    get activeGroup(): HTMLElement| null {
         return this.container.querySelector('.js-emoji-group.is-active');
     }
 
@@ -28,7 +33,7 @@ export default class EmojiPicker<T extends EmojiMap> {
     }
 
     open(): void {
-        this.emojiBlock.classList.add('is-show');
+        this.emojiBlock && this.emojiBlock.classList.add('is-show');
         this.showEmoji();
         document.addEventListener('click', this.close.bind(this), true);
     }
@@ -36,36 +41,36 @@ export default class EmojiPicker<T extends EmojiMap> {
     close(event: Event): void {
         const target = event.target as HTMLElement;
 
-        if (this.emojiBlock.contains(target)) { return; }
+        if (this.emojiBlock && this.emojiBlock.contains(target)) { return; }
 
-        this.emojiBlock.classList.remove('is-show');
+        this.emojiBlock && this.emojiBlock.classList.remove('is-show');
         document.removeEventListener('click', this.close, true);
     }
 
     onEmojiClick(element: HTMLElement): void {
-        const emoji = element.getAttribute('data-emoji');
-        const src = element.getAttribute('data-src');
+        const emoji = element.getAttribute('data-emoji') || '';
+        const src = element.getAttribute('data-src') || '';
         OnEmojiSelectListener.emit({
             emoji: emoji,
             emoji_src: src
         });
-        this.emojiBlock.classList.remove('is-show');
+        this.emojiBlock && this.emojiBlock.classList.remove('is-show');
     }
 
     showGroup(element: HTMLElement): void {
         const group = element.getAttribute('data-tab');
         this.activeGroup && this.activeGroup.classList.remove('is-active');
         const newActiveGroup = this.container.querySelector(`[data-group=${group}]`);
-        newActiveGroup.classList.add('is-active');
+        newActiveGroup && newActiveGroup.classList.add('is-active');
         this.showEmoji();
     }
 
     setElements(): void {
-        this.emojiBlock = this.container.querySelector('.js-emoji-block');
+        this.emojiBlock = this.container.querySelector('.js-emoji-block') as HTMLElement;
     }
 
     addListeners(): void {
-        this.emojiBlock.addEventListener('click', (event: MouseEvent) => {
+        this.emojiBlock && this.emojiBlock.addEventListener('click', (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             if (target.closest('.js-emoji-panel')) {
                 this.showGroup(target);
@@ -76,15 +81,7 @@ export default class EmojiPicker<T extends EmojiMap> {
         OnEmojiSelectListener.subscribe(this.onEmojiSelected);
     }
 
-    setOptions(options: EmojiPickerOptions<T>) {
-        if (options) {
-            this.getEmojiList = options.source;
-            this.onEmojiSelected = options.onSelect;
-            this.defaultActiveGroup = options.defaultActiveGroup || 'smiles';
-        }
-    }
-
-    init() {
+    init(): void {
         this.getEmojiList().then((emoji) => {
             this.render(emoji);
             this.setElements();

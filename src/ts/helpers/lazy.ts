@@ -1,10 +1,11 @@
+// @ts-ignore
 import LazyLoad from 'vanilla-lazyload';
 
-const lazyLoad = function(options) {
+const lazyLoad = function(options: object) {
     return new LazyLoad(options);
 };
 
-const setLazyLoading = function(container) {
+const setLazyLoading = function(container: HTMLElement) {
     lazyLoad({
         container: container,
         elements_selector: '.lazy',

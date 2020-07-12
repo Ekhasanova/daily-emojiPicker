@@ -16,7 +16,6 @@ export default class Panel {
     };
 
     static getContent(groups: string[], activeGroup: string): HTMLElement {
-
         this.activeGroup = activeGroup;
         const groupsPanel = document.createElement('div');
         groupsPanel.classList.add('emoji-block__groups', 'js-emoji-panel');

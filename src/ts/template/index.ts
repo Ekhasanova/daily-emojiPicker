@@ -1,6 +1,6 @@
 import Container from './container';
 import Panel from './panel';
-import { EmojiMap } from '../../ts/types';
+import { EmojiMap } from '../types';
 
 
 export default class DefaultTemplate<T extends EmojiMap> {
@@ -15,7 +15,7 @@ export default class DefaultTemplate<T extends EmojiMap> {
         this.activeGroup = activeGroup;
     }
 
-    get template() {
+    get template(): HTMLElement {
         const block = document.createElement('div');
         block.classList.add('emoji-block', 'js-emoji-block');
         const groups = Object.keys(this.data);
@@ -30,7 +30,7 @@ export default class DefaultTemplate<T extends EmojiMap> {
         return block;
     };
 
-    render() {
+    render(): void {
         this.container.append(this.template)
     }
 

@@ -1,11 +1,10 @@
 import setLazyLoading from '../helpers/lazy';
-import { EmojiItem } from '../../ts/types';
+import { EmojiItem } from '../types';
 
 
 export default class Container {
 
     static getElement(emoji: EmojiItem): HTMLElement {
-
         const { name, relative_path } = emoji;
         const elem = document.createElement('div');
         elem.classList.add('emoji-block__item', 'js-emoji');
@@ -20,7 +19,6 @@ export default class Container {
     };
 
     static getContent(name: string, group: EmojiItem[], activeGroup: string): HTMLElement {
-
         const content = document.createElement('div');
         content.classList.add('emoji-block__wrap', 'js-emoji-group');
         content.setAttribute('data-group', name);
