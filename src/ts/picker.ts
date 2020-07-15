@@ -19,8 +19,12 @@ export class EmojiPicker<T extends EmojiMap> {
         this.defaultActiveGroup = options.defaultActiveGroup || 'smiles';
     }
 
-    get activeGroup(): HTMLElement| null {
+    get activeGroup(): HTMLElement | null {
         return this.container.querySelector('.js-emoji-group.is-active');
+    }
+
+    get activeGroupIcon(): HTMLElement | null {
+        return this.container.querySelector('.js-emoji-panel-item.is-active');
     }
 
     showEmoji(): void {
@@ -30,21 +34,6 @@ export class EmojiPicker<T extends EmojiMap> {
     render(emojiMap: T): void {
         const template = new DefaultTemplate(this.container, emojiMap, this.defaultActiveGroup);
         template.render();
-    }
-
-    open(): void {
-        this.emojiBlock && this.emojiBlock.classList.add('is-show');
-        this.showEmoji();
-        document.addEventListener('click', this.close.bind(this), true);
-    }
-
-    close(event: Event): void {
-        const target = event.target as HTMLElement;
-
-        if (this.emojiBlock && this.emojiBlock.contains(target)) { return; }
-
-        this.emojiBlock && this.emojiBlock.classList.remove('is-show');
-        document.removeEventListener('click', this.close, true);
     }
 
     onEmojiClick(element: HTMLElement): void {
@@ -59,6 +48,8 @@ export class EmojiPicker<T extends EmojiMap> {
 
     showGroup(element: HTMLElement): void {
         const group = element.getAttribute('data-tab');
+        this.activeGroupIcon && this.activeGroupIcon.classList.remove('is-active');
+        element.classList.add('is-active');
         this.activeGroup && this.activeGroup.classList.remove('is-active');
         const newActiveGroup = this.container.querySelector(`[data-group=${group}]`);
         newActiveGroup && newActiveGroup.classList.add('is-active');
@@ -84,9 +75,9 @@ export class EmojiPicker<T extends EmojiMap> {
     init(): void {
         this.getEmojiList().then((emoji) => {
             this.render(emoji);
+            this.showEmoji();
             this.setElements();
             this.addListeners();
-            this.open();
         });
     }
 }

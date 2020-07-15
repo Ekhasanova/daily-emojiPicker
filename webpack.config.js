@@ -2,7 +2,10 @@
 
 const path = require('path');
 const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+
+const extractLESS = new ExtractTextPlugin( 'picker.css');
 
 module.exports = {
 
@@ -12,7 +15,9 @@ module.exports = {
     },
     output: {
         path: path.resolve( __dirname, 'dist' ),
-        filename: 'picker.js'
+        filename: 'picker.js',
+        library: 'dailyEmojiPicker',
+        libraryTarget:'umd'
     },
 
     optimization: {
@@ -31,23 +36,55 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.png$/,
-                use: ['raw-loader'],
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ],
             },
             {
                 test: /\.less$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                    { loader: 'less-loader' }
-                ],
+                use: extractLESS.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: true,
+                                // importLoaders: 1
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    require('postcss-url')({
+                                        sourceMap: true
+                                    })
+                                ]
+                            }
+                        },
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: true,
+                            }
+                        }
+                    ]
+                })
             },
             {
                 test: /\.ts$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.png$/,
+                loader: 'file-loader',
+            }
         ]
-    }
+    },
+
+    plugins: [ extractLESS ]
 
 };
