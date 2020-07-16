@@ -3,7 +3,6 @@
 const path = require('path');
 const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
 
 
 const extractLESS = new ExtractTextPlugin( 'picker.css');
@@ -16,14 +15,21 @@ module.exports = {
     },
     output: {
         path: path.resolve( __dirname, 'dist' ),
-        filename: 'picker.js',
+        filename: 'picker.min.js',
         library: 'dailyEmojiPicker',
         libraryTarget:'umd'
     },
 
     optimization: {
         minimizer: [
-            new TerserPlugin()
+            new UglifyJsWebpackPlugin( {
+                sourceMap: true,
+                uglifyOptions: {
+                    output: {
+                        comments: /^!/
+                    }
+                }
+            } )
         ]
     },
 
