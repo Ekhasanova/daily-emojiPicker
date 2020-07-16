@@ -3,6 +3,7 @@
 const path = require('path');
 const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 const extractLESS = new ExtractTextPlugin( 'picker.css');
@@ -22,14 +23,7 @@ module.exports = {
 
     optimization: {
         minimizer: [
-            new UglifyJsWebpackPlugin( {
-                sourceMap: true,
-                uglifyOptions: {
-                    output: {
-                        comments: /^!/
-                    }
-                }
-            } )
+            new TerserPlugin()
         ]
     },
 
