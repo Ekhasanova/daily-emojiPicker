@@ -19,16 +19,17 @@ export class EmojiPicker<T extends EmojiMap> {
         this.defaultActiveGroup = options.defaultActiveGroup || 'smiles';
     }
 
-    get activeGroup(): HTMLElement | null {
+    getActiveGroup(): HTMLElement | null {
         return this.container.querySelector('.js-emoji-group.is-active');
     }
 
-    get activeGroupIcon(): HTMLElement | null {
+    getActiveGroupIcon(): HTMLElement | null {
         return this.container.querySelector('.js-emoji-panel-item.is-active');
     }
 
     showEmoji(): void {
-        this.activeGroup && this.activeGroup.dispatchEvent(new Event('scroll'));
+        const activeGroup = this.getActiveGroup();
+        activeGroup && activeGroup.dispatchEvent(new Event('scroll'));
     }
 
     render(emojiMap: T): void {
@@ -48,9 +49,11 @@ export class EmojiPicker<T extends EmojiMap> {
 
     showGroup(element: HTMLElement): void {
         const group = element.getAttribute('data-tab');
-        this.activeGroupIcon && this.activeGroupIcon.classList.remove('is-active');
+        const activeGroupIcon = this.getActiveGroupIcon();
+        activeGroupIcon && activeGroupIcon.classList.remove('is-active');
         element.classList.add('is-active');
-        this.activeGroup && this.activeGroup.classList.remove('is-active');
+        const activeGroup = this.getActiveGroup();
+        activeGroup && activeGroup.classList.remove('is-active');
         const newActiveGroup = this.container.querySelector(`[data-group=${group}]`);
         newActiveGroup && newActiveGroup.classList.add('is-active');
         this.showEmoji();
