@@ -7,8 +7,8 @@ export declare class EmojiPicker<T extends EmojiMap> {
     defaultActiveGroup: string;
     onEmojiSelected: OnEmojiSelectHandler;
     constructor(el: HTMLElement, options: EmojiPickerOptions<T>);
-    get activeGroup(): HTMLElement | null;
-    get activeGroupIcon(): HTMLElement | null;
+    getActiveGroup(): HTMLElement | null;
+    getActiveGroupIcon(): HTMLElement | null;
     showEmoji(): void;
     render(emojiMap: T): void;
     onEmojiClick(element: HTMLElement): void;
