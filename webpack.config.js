@@ -51,7 +51,6 @@ module.exports = {
                             loader: 'css-loader',
                             options: {
                                 url: true,
-                                // importLoaders: 1
                             }
                         },
                         {
@@ -63,6 +62,9 @@ module.exports = {
                                     })
                                 ]
                             }
+                        },
+                        {
+                            loader: 'resolve-url-loader'
                         },
                         {
                             loader: 'less-loader',
@@ -81,6 +83,10 @@ module.exports = {
             {
                 test: /\.png$/,
                 loader: 'file-loader',
+                options: {
+                    name: "[name].[ext]",
+                    outputPath: "img",
+                }
             }
         ]
     },

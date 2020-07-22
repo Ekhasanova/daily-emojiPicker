@@ -6,12 +6,12 @@
   background-size: 22px 164px;
   width: 21px;
   height: 15px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
   background-position: 0px 0px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-flags {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-travel {
@@ -22,11 +22,11 @@
   width: 22px;
   height: 17px;
   background-position: 0px -15px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-travel {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-activity {
@@ -36,11 +36,11 @@
   background-repeat: no-repeat;
   background-size: 22px 164px;
   background-position: 0px -32px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-activity {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-animals {
@@ -50,11 +50,11 @@
   background-repeat: no-repeat;
   background-size: 22px 164px;
   background-position: 0px -54px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-animals {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-food {
@@ -64,11 +64,11 @@
   background-repeat: no-repeat;
   background-size: 22px 164px;
   background-position: 0px -76px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-food {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-objects {
@@ -79,11 +79,11 @@
   width: 13px;
   height: 22px;
   background-position: 0px -98px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-objects {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-smiles {
@@ -93,11 +93,11 @@
   background-repeat: no-repeat;
   background-size: 22px 164px;
   background-position: 0px -120px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-smiles {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .sprite-symbols {
@@ -107,11 +107,11 @@
   background-repeat: no-repeat;
   background-size: 22px 164px;
   background-position: 0px -142px;
-  background-image: url(4ab657596f1f057880443ab2d90c8c9c.png);
+  background-image: url(img/sprite.png);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .sprite-symbols {
-    background-image: url(4a92885a9ba3cbb63fb798e6a59f021f.png);
+    background-image: url(img/sprite@2x.png);
   }
 }
 .emoji-block {
