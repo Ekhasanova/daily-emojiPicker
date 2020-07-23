@@ -6,81 +6,104 @@ import '../less/styles.less';
 
 
 export class EmojiPicker<T extends EmojiMap> {
-    container: HTMLElement;
-    emojiBlock?: HTMLElement | null;
-    getEmojiList: EmojiSourceFn<T>;
-    defaultActiveGroup: string;
-    onEmojiSelected: OnEmojiSelectHandler;
+    private container: HTMLElement| null = null;
+    private emojiBlock?: HTMLElement | null;
+    readonly getEmojiList: EmojiSourceFn<T>;
+    readonly defaultActiveGroup: string;
+    readonly onEmojiSelected: OnEmojiSelectHandler;
+    private emojiMap?: T | null;
 
-    constructor(el: HTMLElement, options: EmojiPickerOptions<T>) {
-        this.container = el;
+    constructor(options: EmojiPickerOptions<T>) {
         this.getEmojiList = options.source;
         this.onEmojiSelected = options.onSelect;
         this.defaultActiveGroup = options.defaultActiveGroup || 'smiles';
     }
 
-    getActiveGroup(): HTMLElement | null {
-        return this.container.querySelector('.js-emoji-group.is-active');
+    private getActiveGroup(): HTMLElement | null {
+        return this.container && this.container.querySelector('.js-emoji-group.is-active');
     }
 
-    getActiveGroupIcon(): HTMLElement | null {
-        return this.container.querySelector('.js-emoji-panel-item.is-active');
+    private getActiveGroupIcon(): HTMLElement | null {
+        return this.container && this.container.querySelector('.js-emoji-panel-item.is-active');
     }
 
-    showEmoji(): void {
+    private showEmoji(): void {
         const activeGroup = this.getActiveGroup();
         activeGroup && activeGroup.dispatchEvent(new Event('scroll'));
     }
 
-    render(emojiMap: T): void {
-        const template = new DefaultTemplate(this.container, emojiMap, this.defaultActiveGroup);
-        template.render();
-    }
-
-    onEmojiClick(element: HTMLElement): void {
+    private onEmojiClick(element: HTMLElement): void {
         const emoji = element.getAttribute('data-emoji') || '';
         const src = element.getAttribute('data-src') || '';
         OnEmojiSelectListener.emit({
             emoji: emoji,
             emoji_src: src
         });
-        this.emojiBlock && this.emojiBlock.classList.remove('is-show');
+        this.hide()
     }
 
-    showGroup(element: HTMLElement): void {
+    private showGroup(element: HTMLElement): void {
         const group = element.getAttribute('data-tab');
         const activeGroupIcon = this.getActiveGroupIcon();
         activeGroupIcon && activeGroupIcon.classList.remove('is-active');
         element.classList.add('is-active');
         const activeGroup = this.getActiveGroup();
         activeGroup && activeGroup.classList.remove('is-active');
-        const newActiveGroup = this.container.querySelector(`[data-group=${group}]`);
+        const newActiveGroup = this.container && this.container.querySelector(`[data-group=${group}]`);
         newActiveGroup && newActiveGroup.classList.add('is-active');
         this.showEmoji();
     }
 
-    setElements(): void {
-        this.emojiBlock = this.container.querySelector('.js-emoji-block') as HTMLElement;
+    private setEmojiBlock(): void {
+        this.emojiBlock = this.container && this.container.querySelector('.js-emoji-block') as HTMLElement;
     }
 
-    addListeners(): void {
-        this.emojiBlock && this.emojiBlock.addEventListener('click', (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (target.closest('.js-emoji-panel')) {
-                this.showGroup(target);
-            } else if (target.classList.contains('js-emoji')) {
-                this.onEmojiClick(target);
-            }
-        });
+    private addListeners(): void {
+        this.setEmojiBlock();
+        this.emojiBlock?.addEventListener('click', this.clickListener.bind(this));
         OnEmojiSelectListener.subscribe(this.onEmojiSelected);
     }
 
-    init(): void {
+    private clickListener(event: MouseEvent): void {
+        const target = event.target as HTMLElement;
+        if (target.closest('.js-emoji-panel')) {
+            this.showGroup(target);
+        } else if (target.classList.contains('js-emoji')) {
+            this.onEmojiClick(target);
+        }
+    }
+
+    private unsubscribeEvents(): void {
+        this.emojiBlock?.removeEventListener('click', this.clickListener);
+        OnEmojiSelectListener.unsubscribe();
+    }
+
+    public show(): void {
+        this.emojiBlock?.classList.add('is-show');
+    }
+
+    public hide(): void {
+        this.emojiBlock?.classList.remove('is-show');
+    }
+
+    public render(el: HTMLElement): void {
+        this.unsubscribeEvents();
+        this.container = el;
+        if (this.container && this.emojiMap) {
+            const template = new DefaultTemplate(this.container, this.emojiMap, this.defaultActiveGroup);
+            template.render();
+        }
+        this.addListeners();
+    }
+
+
+    public destroy(): void {
+        this.unsubscribeEvents();
+    }
+
+    public init(): void {
         this.getEmojiList().then((emoji) => {
-            this.render(emoji);
-            this.showEmoji();
-            this.setElements();
-            this.addListeners();
+            this.emojiMap = emoji;
         });
     }
 }
