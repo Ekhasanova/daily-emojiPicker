@@ -6,6 +6,7 @@ export default class Panel {
         elem.classList.add('emoji-block__groups-item', 'js-emoji-panel-item');
         elem.setAttribute('data-tab', group);
 
+        // В целом нормально, но это плохой тон так использовать this
         if (group === this.activeGroup) elem.classList.add('is-active');
 
         const sprite = document.createElement('span');
