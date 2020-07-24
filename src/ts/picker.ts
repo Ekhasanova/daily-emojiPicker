@@ -60,7 +60,7 @@ export class EmojiPicker<T extends EmojiMap> {
 
     private addListeners(): void {
         this.setEmojiBlock();
-        this.emojiBlock?.addEventListener('click', this.clickListener.bind(this));
+        this.emojiBlock && this.emojiBlock.addEventListener('click', this.clickListener.bind(this));
         OnEmojiSelectListener.subscribe(this.onEmojiSelected);
     }
 
@@ -74,16 +74,16 @@ export class EmojiPicker<T extends EmojiMap> {
     }
 
     private unsubscribeEvents(): void {
-        this.emojiBlock?.removeEventListener('click', this.clickListener);
+        this.emojiBlock && this.emojiBlock.removeEventListener('click', this.clickListener);
         OnEmojiSelectListener.unsubscribe();
     }
 
     public show(): void {
-        this.emojiBlock?.classList.add('is-show');
+        this.emojiBlock && this.emojiBlock.classList.add('is-show');
     }
 
     public hide(): void {
-        this.emojiBlock?.classList.remove('is-show');
+        this.emojiBlock && this.emojiBlock.classList.remove('is-show');
     }
 
     public render(el: HTMLElement): void {
