@@ -84,6 +84,7 @@ export class EmojiPicker<T extends EmojiMap> {
 
     public show(): void {
         this.emojiBlock && this.emojiBlock.classList.add('is-show');
+        this.showEmoji();
     }
 
     public hide(): void {
@@ -98,7 +99,6 @@ export class EmojiPicker<T extends EmojiMap> {
             template.render();
         }
         this.addListeners();
-        this.showEmoji();
     }
 
 

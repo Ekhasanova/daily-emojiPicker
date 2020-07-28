@@ -115,11 +115,15 @@
   }
 }
 .emoji-block {
+  position: relative;
   width: 305px;
   height: 420px;
   background-color: #ffffff;
   border: 1px solid #dedede;
   display: none;
+}
+.emoji-block * {
+  box-sizing: border-box;
 }
 .emoji-block.is-show {
   display: block;
@@ -159,6 +163,7 @@
   clear: both;
 }
 .emoji-block__groups-item {
+  position: relative;
   cursor: pointer;
   height: 55px;
   width: 35px;
@@ -182,6 +187,7 @@
 }
 .emoji-block__wrap {
   display: none;
+  position: relative;
   margin-top: 20px;
   max-height: 315px;
   overflow: auto;
@@ -197,10 +203,4 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 0px 10px;
-}
-.emoji-block * {
-  box-sizing: border-box;
-}
-.emoji-block div {
-  position: relative;
 }
