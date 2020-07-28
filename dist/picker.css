@@ -121,7 +121,7 @@
   border: 1px solid #dedede;
   display: none;
 }
-.emoji-block .is-show {
+.emoji-block.is-show {
   display: block;
 }
 .emoji-block__item {
