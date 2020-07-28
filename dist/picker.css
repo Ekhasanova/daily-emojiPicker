@@ -115,14 +115,14 @@
   }
 }
 .emoji-block {
-  position: absolute;
-  top: 100%;
-  left: 0;
   width: 305px;
   height: 420px;
-  z-index: 5;
   background-color: #ffffff;
   border: 1px solid #dedede;
+  display: none;
+}
+.emoji-block .is-show {
+  display: block;
 }
 .emoji-block__item {
   width: 40px;

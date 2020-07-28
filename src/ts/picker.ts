@@ -94,6 +94,7 @@ export class EmojiPicker<T extends EmojiMap> {
             template.render();
         }
         this.addListeners();
+        this.showEmoji();
     }
 
 
