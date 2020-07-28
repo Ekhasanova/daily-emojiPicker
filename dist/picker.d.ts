@@ -17,6 +17,7 @@ export declare class EmojiPicker<T extends EmojiMap> {
     private addListeners;
     private clickListener;
     private unsubscribeEvents;
+    private clear;
     show(): void;
     hide(): void;
     render(el: HTMLElement): void;

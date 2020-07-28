@@ -78,6 +78,10 @@ export class EmojiPicker<T extends EmojiMap> {
         OnEmojiSelectListener.unsubscribe();
     }
 
+    private clear() {
+        if (this.container) this.container.innerHTML = '';
+    }
+
     public show(): void {
         this.emojiBlock && this.emojiBlock.classList.add('is-show');
     }
@@ -100,6 +104,7 @@ export class EmojiPicker<T extends EmojiMap> {
 
     public destroy(): void {
         this.unsubscribeEvents();
+        this.clear();
     }
 
     public init(): void {
