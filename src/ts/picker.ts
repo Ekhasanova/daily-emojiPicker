@@ -93,6 +93,7 @@ export class EmojiPicker<T extends EmojiMap> {
 
     public render(el: HTMLElement): void {
         this.unsubscribeEvents();
+        this.clear();
         this.container = el;
         if (this.container && this.emojiMap) {
             const template = new DefaultTemplate(this.container, this.emojiMap, this.defaultActiveGroup);
@@ -104,7 +105,6 @@ export class EmojiPicker<T extends EmojiMap> {
 
     public destroy(): void {
         this.unsubscribeEvents();
-        this.clear();
     }
 
     public init(): void {
