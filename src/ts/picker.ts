@@ -39,7 +39,6 @@ export class EmojiPicker<T extends EmojiMap> {
             emoji: emoji,
             emoji_src: src
         });
-        this.hide()
     }
 
     private showGroup(element: HTMLElement): void {
