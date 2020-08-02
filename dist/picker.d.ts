@@ -22,5 +22,5 @@ export declare class EmojiPicker<T extends EmojiMap> {
     hide(): void;
     render(el: HTMLElement): void;
     destroy(): void;
-    init(): void;
+    init(): Promise<void>;
 }

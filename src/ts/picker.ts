@@ -107,9 +107,7 @@ export class EmojiPicker<T extends EmojiMap> {
         this.unsubscribeEvents();
     }
 
-    public init(): void {
-        this.getEmojiList().then((emoji) => {
-            this.emojiMap = emoji;
-        });
+    async init(): Promise<void> {
+        this.emojiMap = await this.getEmojiList();
     }
 }
