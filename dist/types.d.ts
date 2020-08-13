@@ -7,8 +7,9 @@ export interface EmojiMap {
     [group: string]: EmojiItem[];
 }
 export interface EmojiData {
-    emoji: string;
-    emoji_src: string;
+    emoji?: string;
+    emoji_src?: string;
+    emoji_url?: string;
 }
 export interface EmojiPickerOptions<T extends EmojiMap> {
     source: EmojiSourceFn<T>;

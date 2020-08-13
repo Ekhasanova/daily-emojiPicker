@@ -35,9 +35,11 @@ export class EmojiPicker<T extends EmojiMap> {
     private onEmojiClick(element: HTMLElement): void {
         const emoji = element.getAttribute('data-emoji') || '';
         const src = element.getAttribute('data-src') || '';
+        const url = element.getAttribute('data-url') || '';
         OnEmojiSelectListener.emit({
             emoji: emoji,
-            emoji_src: src
+            emoji_src: src,
+            emoji_url: url
         });
     }
 

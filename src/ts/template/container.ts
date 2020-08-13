@@ -10,6 +10,7 @@ export default class Container {
         elem.classList.add('emoji-block__item', 'js-emoji');
         elem.setAttribute('data-emoji', name);
         elem.setAttribute('data-src', relative_path);
+        elem.setAttribute('data-url', url);
         const img = document.createElement('div');
         img.classList.add('emoji-block__item-image', 'lazy');
         img.setAttribute('data-original', url);
